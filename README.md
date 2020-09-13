@@ -1,2 +1,2 @@
-# Wide Graph COnvolutional Networks
+# Wide Graph Convolutional Networks
  
