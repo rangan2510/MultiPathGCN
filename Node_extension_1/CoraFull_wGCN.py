@@ -11,11 +11,12 @@ import time
 import numpy as np
 import psutil
 from statistics import mean
-from dgl.data import CoraGraphDataset
+from dgl.data import CoraFullDataset
 import networkx as nx
 
 ###############################################################################
-# 
+# For reproducibility. Doesn't really work.
+# Placebo code. Leaving it here for mental peace. 
 
 dgl.seed(0)
 dgl.random.seed(0)
@@ -25,15 +26,25 @@ dgl.random.seed(0)
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
-        self.layer1 = GraphConv(1433, 128)
-        self.layer2 = GraphConv(128, 128)
-        self.layer3 = GraphConv(128, 128)
-        self.fc = nn.Linear(128, 7)
+        self.layer0 = GraphConv(8710, 256)
+        self.layer1 = GraphConv(256, 256)
+        self.layer2 = GraphConv(256, 256)
+        self.layer3 = GraphConv(256, 256)
+
+        self.layer4 = GraphConv(256, 256)
+        self.layer5 = GraphConv(256, 256)
+        self.fc = nn.Linear(256, 70)
     
     def forward(self, g, features):
-        x = F.relu(self.layer1(g, features))
+        x = _x = F.relu(self.layer0(g, features))
+        x = F.relu(self.layer1(g, x))
         x = F.relu(self.layer2(g, x))
         x = F.relu(self.layer3(g, x))
+
+        _x = F.relu(self.layer4(g, _x))
+        _x = F.relu(self.layer5(g, _x))
+        x += _x
+        x = F.relu(x)
         x = self.fc(x)
         return x
 net = Net()
@@ -42,15 +53,20 @@ print(net)
 ###############################################################################
 # We load the cora dataset using DGL's built-in data module.
 
-def load_cora_data():
-    data = CoraGraphDataset()
+def load_data(split = 0.8):
+    from dgl.data import CoraFullDataset
+    data = CoraFullDataset()
     g = data[0]
-    features = th.FloatTensor(data.features)
-    labels = g.ndata['label']
-    train_mask = g.ndata['train_mask']
-    valid_mask = g.ndata['val_mask']
-    test_mask = g.ndata['test_mask']
-    return g, features, labels, train_mask, test_mask
+    num_class = data.num_classes
+    feat = g.ndata['feat']  # get node feature
+    label = g.ndata['label']
+    mask = torch.BoolTensor(g.num_nodes())
+    mask[:] = False
+    split_idx = int((g.num_nodes()*split))
+    mask[:split_idx] = True
+    train_mask = mask
+    test_mask = torch.logical_not(train_mask)
+    return g, feat, label, train_mask, test_mask
 
 ###############################################################################
 # Eval
@@ -68,7 +84,7 @@ def evaluate(model, g, features, labels, mask):
 ###############################################################################
 # Train
 print("CPU cores:", psutil.cpu_count())
-g, features, labels, train_mask, test_mask = load_cora_data()
+g, features, labels, train_mask, test_mask = load_data()
 # Add edges between each node and itself to preserve old node representations
 g.add_edges(g.nodes(), g.nodes())
 print(g)
@@ -77,7 +93,7 @@ dur = []
 
 best_score = 0
 best_epoch = 0
-for epoch in range(50):
+for epoch in range(200):
     if epoch >=3:
         t0 = time.time()
 
