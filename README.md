@@ -1,4 +1,4 @@
-# AAAI 21 Student Abstract
+# Wide Graph Convolutional Networks
  
 ## Abstract
 
