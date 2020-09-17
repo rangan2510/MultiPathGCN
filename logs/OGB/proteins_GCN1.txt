@@ -1,0 +1,23 @@
+Epoch 10	 loss 0.3921	 train score 0.4799	 val score 0.3531	 test score 0.3836	 dur 10.41s	 patience 0
+Epoch 20	 loss 0.3384	 train score 0.6684	 val score 0.6873	 test score 0.6656	 dur 10.59s	 patience 0
+Epoch 30	 loss 0.3178	 train score 0.7305	 val score 0.7260	 test score 0.6935	 dur 10.66s	 patience 0
+Epoch 40	 loss 0.3097	 train score 0.7471	 val score 0.7392	 test score 0.7021	 dur 10.93s	 patience 1
+Epoch 50	 loss 0.3073	 train score 0.7560	 val score 0.7442	 test score 0.7094	 dur 10.42s	 patience 0
+Epoch 60	 loss 0.3046	 train score 0.7655	 val score 0.7484	 test score 0.7126	 dur 10.36s	 patience 1
+Epoch 70	 loss 0.3025	 train score 0.7739	 val score 0.7493	 test score 0.7183	 dur 10.75s	 patience 2
+Epoch 80	 loss 0.2995	 train score 0.7802	 val score 0.7578	 test score 0.7256	 dur 10.85s	 patience 0
+Epoch 90	 loss 0.2952	 train score 0.7891	 val score 0.7639	 test score 0.7283	 dur 10.20s	 patience 1
+Epoch 100	 loss 0.2923	 train score 0.7947	 val score 0.7616	 test score 0.7251	 dur 10.61s	 patience 8
+Epoch 110	 loss 0.2918	 train score 0.8012	 val score 0.7702	 test score 0.7320	 dur 10.42s	 patience 5
+Epoch 120	 loss 0.2899	 train score 0.8010	 val score 0.7717	 test score 0.7372	 dur 10.97s	 patience 9
+Epoch 130	 loss 0.2895	 train score 0.8030	 val score 0.7757	 test score 0.7368	 dur 10.75s	 patience 19
+Epoch 140	 loss 0.2933	 train score 0.8016	 val score 0.7787	 test score 0.7401	 dur 10.46s	 patience 0
+Epoch 150	 loss 0.2880	 train score 0.8069	 val score 0.7746	 test score 0.7341	 dur 10.56s	 patience 10
+Epoch 160	 loss 0.2848	 train score 0.8125	 val score 0.7768	 test score 0.7354	 dur 10.93s	 patience 4
+Epoch 170	 loss 0.2885	 train score 0.8110	 val score 0.7759	 test score 0.7300	 dur 10.49s	 patience 6
+Epoch 180	 loss 0.2829	 train score 0.8147	 val score 0.7760	 test score 0.7246	 dur 10.41s	 patience 16
+Epoch 190	 loss 0.2822	 train score 0.8180	 val score 0.7736	 test score 0.7194	 dur 10.43s	 patience 26
+Epoch 200	 loss 0.2801	 train score 0.8229	 val score 0.7772	 test score 0.7224	 dur 10.64s	 patience 36
+Epoch 210	 loss 0.2901	 train score 0.8198	 val score 0.7795	 test score 0.7206	 dur 10.13s	 patience 46
+Best test score: 0.7423921622537152
+at164
